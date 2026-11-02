@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-HK" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mike Ting | 高淨值家庭理財與資產傳承顧問 | Sun Life 香港永明金融</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sunlife: {
+                            gold: '#F2A900',
+                            yellow: '#FFC72C',
+                            dark: '#111827',
+                            navy: '#0A121E',
+                            glass: 'rgba(10, 18, 30, 0.85)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
+        .gold-gradient {
+            background: linear-gradient(135deg, #FFE082 0%, #F2A900 50%, #B77B00 100%);
+        }
+        .gold-text-gradient {
+            background: linear-gradient(135deg, #FFE082 0%, #F2A900 50%, #D48800 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .navy-glass {
+            background: rgba(10, 18, 30, 0.88);
+            backdrop-filter: blur(14px);
+        }
+    </style>
+</head>
+<body class="bg-sunlife-navy text-slate-100 antialiased selection:bg-sunlife-gold selection:text-sunlife-navy">
+
+    <!-- Sticky Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 navy-glass border-b border-sunlife-gold/20 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand & Name -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl gold-gradient flex items-center justify-center text-sunlife-navy font-bold shadow-lg shadow-sunlife-gold/20 group-hover:scale-105 transition-transform">
+                    <i data-lucide="sun" class="w-6 h-6 stroke-[2.5]"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xl font-extrabold tracking-wider text-white">MIKE TING</span>
+                        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-sunlife-gold/20 text-sunlife-gold border border-sunlife-gold/30">Sun Life</span>
+                    </div>
+                    <span class="block text-[10px] text-slate-400 tracking-wider">香港永明金融 Senior Wealth Consultant</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#home" class="text-slate-300 hover:text-sunlife-gold transition-colors">首頁</a>
+                <a href="#solutions" class="text-slate-300 hover:text-sunlife-gold transition-colors">尊貴方案</a>
+                <a href="#calculator" class="text-slate-300 hover:text-sunlife-gold transition-colors">需求計算機</a>
+                <a href="#about" class="text-slate-300 hover:text-sunlife-gold transition-colors">關於 Mike</a>
+                <a href="#contact" class="text-slate-300 hover:text-sunlife-gold transition-colors">聯絡我們</a>
+            </nav>
+
+            <!-- Quick Action Call/WhatsApp Button -->
+            <div class="hidden md:flex items-center gap-3">
+                <a href="https://wa.me/85262868264?text=你好%20Mike，我想預約一對一私人理財與保障諮詢。" target="_blank" class="px-4 py-2.5 rounded-full bg-emerald-600/90 hover:bg-emerald-500 text-white font-semibold text-xs flex items-center gap-2 shadow-lg transition-all">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp 62868264
+                </a>
+                <button onclick="openBookingModal()" class="px-5 py-2.5 rounded-full gold-gradient text-sunlife-navy font-bold text-xs hover:opacity-95 shadow-lg shadow-sunlife-gold/20 transition-all transform hover:-translate-y-0.5">
+                    預約私人諮詢
+                </button>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-slate-300 hover:text-white">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden navy-glass border-b border-sunlife-gold/20 px-6 py-6 space-y-4">
+            <a href="#home" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-sunlife-gold font-medium">首頁</a>
+            <a href="#solutions" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-sunlife-gold font-medium">尊貴方案</a>
+            <a href="#calculator" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-sunlife-gold font-medium">需求計算機</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-sunlife-gold font-medium">關於 Mike</a>
+            <a href="https://wa.me/85262868264?text=你好%20Mike，我想預約一對一私人理財與保障諮詢。" target="_blank" class="w-full py-3 rounded-xl bg-emerald-600 text-white font-bold text-sm text-center flex items-center justify-center gap-2">
+                <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp 直接對話 (62868264)
+            </a>
+            <button onclick="openBookingModal(); toggleMobileMenu();" class="w-full py-3 rounded-xl gold-gradient text-sunlife-navy font-bold text-sm text-center shadow-lg">
+                預約專屬諮詢
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden bg-gradient-to-b from-sunlife-navy via-slate-950 to-sunlife-navy">
+        <!-- Sun Gold Subtle Radial Glow -->
+        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-sunlife-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Hero Intro -->
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sunlife-gold/10 border border-sunlife-gold/30 text-sunlife-gold text-xs font-bold tracking-wide uppercase">
+                        <i data-lucide="shield-check" class="w-4 h-4"></i> 香港永明金融 (Sun Life Hong Kong)
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
+                        專業守護家族資產，<br><span class="gold-text-gradient">傳承跨世代財富與智慧</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        我是 <strong class="text-white font-bold">Mike Ting</strong>，專注為高淨值人士及家庭提供全方位的資產傳承、稅務優化配置、高端醫療風險屏障與退休財富增值方案。
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="https://wa.me/85262868264?text=你好%20Mike，我想初步了解高淨值財富傳承方案。" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-base shadow-xl shadow-emerald-900/20 transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i> 即時 WhatsApp 諮詢
+                        </a>
+                        <button onclick="openBookingModal()" class="w-full sm:w-auto px-8 py-4 rounded-full gold-gradient text-sunlife-navy font-bold text-base hover:opacity-95 shadow-xl shadow-sunlife-gold/20 transition-all text-center">
+                            預約面談 / 視訊諮詢
+                        </button>
+                    </div>
+
+                    <!-- Direct Contact Bar -->
+                    <div class="pt-8 border-t border-slate-800/80 grid grid-cols-2 sm:grid-cols-3 gap-6 text-center lg:text-left">
+                        <div>
+                            <p class="text-xs text-slate-400">高級財富顧問</p>
+                            <p class="text-lg font-bold text-white mt-0.5">Mike Ting</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400">專線及 WhatsApp</p>
+                            <a href="tel:62868264" class="text-lg font-bold text-sunlife-gold hover:underline mt-0.5 block">6286 8264</a>
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <p class="text-xs text-slate-400">隸屬機構</p>
+                            <p class="text-sm font-semibold text-white mt-0.5">香港永明金融</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Card Column -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative rounded-3xl p-8 bg-gradient-to-br from-slate-900/90 to-sunlife-navy/90 border border-sunlife-gold/30 shadow-2xl backdrop-blur-xl">
+                        <div class="flex items-center justify-between pb-6 border-b border-slate-800">
+                            <div>
+                                <h3 class="text-xl font-bold text-white">私人財富保障核心</h3>
+                                <p class="text-xs text-slate-400 mt-1">Sun Life Executive Advisory</p>
+                            </div>
+                            <div class="w-12 h-12 rounded-2xl gold-gradient flex items-center justify-center text-sunlife-navy shadow-md">
+                                <i data-lucide="award" class="w-6 h-6"></i>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4 my-6 text-sm text-slate-300">
+                            <div class="flex items-start gap-3">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-sunlife-gold shrink-0 mt-0.5"></i>
+                                <span><strong>家族信託與保單架構：</strong> 免除繁複遺產檢定，定額 / 滾存平穩過渡至下一代。</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-sunlife-gold shrink-0 mt-0.5"></i>
+                                <span><strong>環球多元貨幣儲蓄：</strong> 多貨幣轉換選項，鎖定市場長期滾存高回報。</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-sunlife-gold shrink-0 mt-0.5"></i>
+                                <span><strong>尊尚環球醫療防護：</strong> 全球頂尖私家醫院賠償及免找數網絡支援。</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <a href="https://wa.me/85262868264?text=你好%20Mike，想了解更多高淨值家庭保障與傳承方案。" target="_blank" class="w-full py-3.5 rounded-xl bg-sunlife-gold/10 hover:bg-sunlife-gold/20 border border-sunlife-gold/40 text-sunlife-gold font-semibold text-sm transition-all flex items-center justify-center gap-2">
+                                <span>聯絡 Mike Ting (62868264)</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Wealth & Coverage Needs Calculator Section -->
+    <section id="calculator" class="py-24 bg-slate-950 relative border-y border-sunlife-gold/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-sunlife-gold font-semibold text-sm tracking-widest uppercase">智能財富與保障測算</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">家庭退休與風險保障需求計算機</h2>
+                <p class="text-slate-300">快速評估您未來的退休儲備目標與家庭核心保障缺口。</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Calculator Controls -->
+                <div class="lg:col-span-7 bg-slate-900/80 p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-xl space-y-6">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2 pb-4 border-b border-slate-800">
+                        <i data-lucide="sliders" class="w-5 h-5 text-sunlife-gold"></i> 輸入參數
+                    </h3>
+
+                    <div class="space-y-6">
+                        <!-- Current Age -->
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-sm font-medium text-slate-300">現時年齡 (歲)</label>
+                                <span id="val-age" class="text-sunlife-gold font-bold text-lg">35</span>
+                            </div>
+                            <input type="range" id="input-age" min="20" max="65" value="35" class="w-full accent-sunlife-gold bg-slate-800 rounded-lg h-2 cursor-pointer" oninput="calculateWealth()">
+                        </div>
+
+                        <!-- Target Retirement Age -->
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-sm font-medium text-slate-300">預計退休年齡 (歲)</label>
+                                <span id="val-ret-age" class="text-sunlife-gold font-bold text-lg">60</span>
+                            </div>
+                            <input type="range" id="input-ret-age" min="45" max="75" value="60" class="w-full accent-sunlife-gold bg-slate-800 rounded-lg h-2 cursor-pointer" oninput="calculateWealth()">
+                        </div>
+
+                        <!-- Monthly Expense Requirement -->
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-sm font-medium text-slate-300">退休後預計每月生活開支 (HKD)</label>
+                                <span id="val-expense" class="text-sunlife-gold font-bold text-lg">$50,000</span>
+                            </div>
+                            <input type="range" id="input-expense" min="10000" max="200000" step="5000" value="50000" class="w-full accent-sunlife-gold bg-slate-800 rounded-lg h-2 cursor-pointer" oninput="calculateWealth()">
+                        </div>
+
+                        <!-- Existing Savings & Asset -->
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-sm font-medium text-slate-300">現有儲蓄及人壽保障總額 (HKD)</label>
+                                <span id="val-savings" class="text-sunlife-gold font-bold text-lg">$2,000,000</span>
+                            </div>
+                            <input type="range" id="input-savings" min="0" max="20000000" step="200000" value="2000000" class="w-full accent-sunlife-gold bg-slate-800 rounded-lg h-2 cursor-pointer" oninput="calculateWealth()">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calculator Output -->
+                <div class="lg:col-span-5 bg-gradient-to-br from-slate-900 to-sunlife-navy p-8 rounded-3xl border border-sunlife-gold/40 shadow-2xl flex flex-col justify-between">
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-bold text-white flex items-center gap-2 pb-4 border-b border-slate-800">
+                            <i data-lucide="pie-chart" class="w-5 h-5 text-sunlife-gold"></i> 需求估算結果
+                        </h3>
+
+                        <div class="space-y-4">
+                            <div class="bg-slate-950/80 p-4 rounded-2xl border border-slate-800">
+                                <p class="text-xs text-slate-400 uppercase tracking-wider">預估總所需退休金 (以25年計)</p>
+                                <p id="res-total-needed" class="text-2xl sm:text-3xl font-extrabold text-white mt-1">$15,000,000</p>
+                            </div>
+
+                            <div class="bg-slate-950/80 p-4 rounded-2xl border border-slate-800">
+                                <p class="text-xs text-slate-400 uppercase tracking-wider">估算儲蓄與保障缺口</p>
+                                <p id="res-gap" class="text-2xl sm:text-3xl font-extrabold text-sunlife-gold mt-1">$13,000,000</p>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            *此工具計算僅供初步參考。真正的家族財富傳承及資產配置需配合稅務、貨幣選擇及通脹模型，Mike 將為您進行更深入的個人化分析。
+                        </p>
+                    </div>
+
+                    <div class="pt-8">
+                        <a id="whatsapp-calc-btn" href="#" target="_blank" class="w-full py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-xl transition-all text-center flex items-center justify-center gap-2">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i>
+                            <span>將此計算結果傳送給 Mike 諮詢</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services / Solutions Grid Section -->
+    <section id="solutions" class="py-24 bg-sunlife-navy">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-sunlife-gold font-semibold text-sm tracking-widest uppercase">核心專業領域</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">全方位財富與防護方案</h2>
+                <p class="text-slate-300">結合永明金融百多年穩健品牌，為您打造無後顧之憂的財務藍圖。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Solution 1 -->
+                <div class="bg-slate-900/80 p-8 rounded-3xl border border-slate-800 hover:border-sunlife-gold/50 transition-all group">
+                    <div class="w-14 h-14 rounded-2xl gold-gradient flex items-center justify-center text-sunlife-navy shadow-md mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="shield" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">資產傳承與家族保障</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-6">
+                        精準設定保單受益人與靈活提取條款，協助高淨值家庭順利進行資產跨代轉移，鎖定家族財富。
+                    </p>
+                    <a href="https://wa.me/85262868264?text=你好%20Mike，我想了解資產傳承及家族保單規劃。" target="_blank" class="text-sunlife-gold text-sm font-semibold flex items-center gap-1 hover:underline">
+                        向 Mike 查詢 <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Solution 2 -->
+                <div class="bg-slate-900/80 p-8 rounded-3xl border border-slate-800 hover:border-sunlife-gold/50 transition-all group">
+                    <div class="w-14 h-14 rounded-2xl gold-gradient flex items-center justify-center text-sunlife-navy shadow-md mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="trending-up" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">環球財富增值與儲蓄</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-6">
+                        提供多元貨幣儲蓄計劃，靈活因應環球經濟變化，為子女升學、退休或家族基金提供穩定穩健滾存。
+                    </p>
+                    <a href="https://wa.me/85262868264?text=你好%20Mike，我想了解多元貨幣儲蓄與退休規劃。" target="_blank" class="text-sunlife-gold text-sm font-semibold flex items-center gap-1 hover:underline">
+                        向 Mike 查詢 <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Solution 3 -->
+                <div class="bg-slate-900/80 p-8 rounded-3xl border border-slate-800 hover:border-sunlife-gold/50 transition-all group">
+                    <div class="w-14 h-14 rounded-2xl gold-gradient flex items-center justify-center text-sunlife-navy shadow-md mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="heart-pulse" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">高端醫療與重疾防護</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-6">
+                        全方位覆蓋全球頂尖私家醫院，提供免找數直付服務及多重重疾財務支援，建構最強家族健康後盾。
+                    </p>
+                    <a href="https://wa.me/85262868264?text=你好%20Mike，我想了解高端醫療及重疾防護方案。" target="_blank" class="text-sunlife-gold text-sm font-semibold flex items-center gap-1 hover:underline">
+                        向 Mike 查詢 <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Profile Section -->
+    <section id="about" class="py-24 bg-slate-950 border-t border-sunlife-gold/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Profile Avatar Card -->
+                <div class="lg:col-span-5 relative">
+                    <div class="rounded-3xl p-8 bg-gradient-to-br from-slate-900 to-sunlife-navy border border-sunlife-gold/30 text-center shadow-2xl">
+                        <div class="w-36 h-36 mx-auto rounded-full gold-gradient p-1 mb-6 shadow-xl">
+                            <div class="w-full h-full rounded-full bg-slate-950 flex items-center justify-center overflow-hidden">
+                                <img src="https://placehold.co/400x400/0A121E/F2A900?text=Mike+Ting" alt="Mike Ting" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">Mike Ting (丁偉軒)</h3>
+                        <p class="text-sunlife-gold font-medium text-sm mt-1">資深理財與資產傳承顧問</p>
+                        <p class="text-xs text-slate-400 mt-2">Sun Life Hong Kong Limited 香港永明金融</p>
+
+                        <div class="mt-6 pt-6 border-t border-slate-800 flex items-center justify-center gap-4">
+                            <a href="tel:62868264" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs text-slate-200 flex items-center gap-2">
+                                <i data-lucide="phone" class="w-3.5 h-3.5 text-sunlife-gold"></i> 62868264
+                            </a>
+                            <a href="https://wa.me/85262868264" target="_blank" class="px-4 py-2 rounded-xl bg-emerald-600/30 border border-emerald-500/40 text-xs text-emerald-300 flex items-center gap-2">
+                                <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Bio Description -->
+                <div class="lg:col-span-7 space-y-6">
+                    <span class="text-sunlife-gold font-semibold text-sm tracking-widest uppercase">關於您的理財顧問</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">以誠信與客製化分析，助您達成財務自由</h2>
+                    <p class="text-slate-300 leading-relaxed font-light">
+                        身為香港永明金融 (Sun Life Hong Kong Limited) 的資深理財顧問，Mike Ting 秉持著專業、客觀且精準的理財理念，為每一個家庭量身打造最合適的防護與增值策略。
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
+                            <h4 class="font-bold text-white text-base">一對一深度需求分析</h4>
+                            <p class="text-xs text-slate-400 mt-1">拒絕套用現成範本，完全針對個人及家庭財況規劃。</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
+                            <h4 class="font-bold text-white text-base">百年永明品牌後盾</h4>
+                            <p class="text-xs text-slate-400 mt-1">依靠實力雄厚的環球金融集團，保障安全穩健。</p>
+                        </div>
+                    </div>
+                    <div class="pt-4 flex items-center gap-4">
+                        <a href="https://wa.me/85262868264?text=你好%20Mike，我想預約時間進行一對一理財諮詢。" target="_blank" class="px-8 py-3.5 rounded-full gold-gradient text-sunlife-navy font-bold text-sm shadow-xl hover:opacity-95 transition-all">
+                            直接聯絡 Mike (62868264)
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer & Contact -->
+    <footer id="contact" class="bg-slate-950 border-t border-sunlife-gold/20 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 pb-12 border-b border-slate-800">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg gold-gradient flex items-center justify-center text-sunlife-navy font-bold">
+                            <i data-lucide="sun" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">Mike Ting | Sun Life</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        香港永明金融 Senior Wealth Consultant<br>
+                        致力為您與家人提供最可靠的理財、保障與世代傳承規劃。
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm tracking-wider uppercase">聯絡 Mike Ting</h4>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="phone" class="w-4 h-4 text-sunlife-gold"></i>
+                            <span>電話 / 直接專線：<a href="tel:62868264" class="text-white hover:underline">6286 8264</a></span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i>
+                            <span>WhatsApp：<a href="https://wa.me/85262868264" target="_blank" class="text-emerald-400 hover:underline">6286 8264 (即時對話)</a></span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="building-2" class="w-4 h-4 text-sunlife-gold"></i>
+                            <span>Sun Life Hong Kong Limited 香港永明金融</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm tracking-wider uppercase">快速預約</h4>
+                    <button onclick="openBookingModal()" class="w-full py-3 rounded-xl gold-gradient text-sunlife-navy font-bold text-sm shadow-md mb-3">
+                        線上預約諮詢表單
+                    </button>
+                    <a href="https://wa.me/85262868264?text=你好%20Mike，我想預約諮詢。" target="_blank" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm text-center flex items-center justify-center gap-2">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp 一鍵對話
+                    </a>
+                </div>
+            </div>
+
+            <div class="pt-8 text-center text-xs text-slate-500">
+                <p>&copy; 2026 Mike Ting (Sun Life Hong Kong Limited). All rights reserved.</p>
+                <p class="mt-1 text-[11px] text-slate-600">免責聲明：本網站內容僅供參考，並不構成任何保險或投資產品之招攬或建議。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Consultation Modal -->
+    <div id="booking-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+        <div class="bg-slate-900 border border-sunlife-gold/40 rounded-3xl max-w-lg w-full p-8 shadow-2xl relative">
+            <button onclick="closeBookingModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div class="space-y-6">
+                <div>
+                    <span class="text-sunlife-gold text-xs font-semibold uppercase tracking-widest">香港永明金融</span>
+                    <h3 class="text-2xl font-bold text-white mt-1">預約 Mike Ting 私人諮詢</h3>
+                    <p class="text-xs text-slate-300 mt-1">填寫簡短資料，Mike 將於 24 小時內親自回覆您。</p>
+                </div>
+
+                <form onsubmit="handleBookingSubmit(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">您的姓名</label>
+                        <input type="text" id="form-name" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-sunlife-gold" placeholder="例如：張先生 / 陳小姐">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">聯絡電話</label>
+                        <input type="tel" id="form-phone" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-sunlife-gold" placeholder="例如：9123 4567">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-1">主要關注主題</label>
+                        <select id="form-topic" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-sunlife-gold">
+                            <option>資產傳承與家族保單</option>
+                            <option>多元貨幣儲蓄與退休規劃</option>
+                            <option>高端醫療與重疾防護</option>
+                            <option>其他個人理財分析</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full py-3.5 rounded-xl gold-gradient text-sunlife-navy font-bold text-sm shadow-lg hover:opacity-95 transition-all">
+                        經由 WhatsApp 發送預約給 Mike
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS Code -->
+    <script>
+        lucide.createIcons();
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        function openBookingModal() {
+            const modal = document.getElementById('booking-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeBookingModal() {
+            const modal = document.getElementById('booking-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function handleBookingSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('form-name').value;
+            const phone = document.getElementById('form-phone').value;
+            const topic = document.getElementById('form-topic').value;
+
+            const text = `你好 Mike！我是 ${name} (電話: ${phone})，我想向你預約關於【${topic}】的私人理財諮詢。`;
+            const waUrl = `https://wa.me/85262868264?text=${encodeURIComponent(text)}`;
+            
+            window.open(waUrl, '_blank');
+            closeBookingModal();
+        }
+
+        function calculateWealth() {
+            const age = parseInt(document.getElementById('input-age').value);
+            const retAge = parseInt(document.getElementById('input-ret-age').value);
+            const expense = parseInt(document.getElementById('input-expense').value);
+            const savings = parseInt(document.getElementById('input-savings').value);
+
+            document.getElementById('val-age').innerText = age;
+            document.getElementById('val-ret-age').innerText = retAge;
+            document.getElementById('val-expense').innerText = '$' + expense.toLocaleString();
+            document.getElementById('val-savings').innerText = '$' + savings.toLocaleString();
+
+            const years = 25;
+            const totalNeeded = expense * 12 * years;
+            const gap = Math.max(0, totalNeeded - savings);
+
+            document.getElementById('res-total-needed').innerText = '$' + totalNeeded.toLocaleString();
+            document.getElementById('res-gap').innerText = '$' + gap.toLocaleString();
+
+            // Dynamic WhatsApp message with calculated gap
+            const calcText = `你好 Mike！我剛在你的網站做了理財測算：現時 ${age} 歲，打算 ${retAge} 歲退休，預計退休開支每月 HKD $${expense.toLocaleString()}。算出的預計缺口為 HKD $${gap.toLocaleString()}，想請教專業的配置建議。`;
+            document.getElementById('whatsapp-calc-btn').href = `https://wa.me/85262868264?text=${encodeURIComponent(calcText)}`;
+        }
+
+        calculateWealth();
+    </script>
+</body>
+</html>
